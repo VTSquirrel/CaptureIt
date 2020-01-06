@@ -35,8 +35,6 @@
     <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <style>
         .loader {
@@ -63,6 +61,8 @@
             border: none;
         }
     </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -180,7 +180,6 @@
             </div>
         </footer>
     </div>
-    <script type="text/javascript"></script>
     <script>
         $(document).on('submit','form',function(e){
             var oForm = $(this);

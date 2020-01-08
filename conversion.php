@@ -76,7 +76,17 @@
 			    $_SESSION["new-user-id"] = $newuserid;
 			    $_SESSION["modal"] = true;
 			    $mydb->query("CALL UploadCreateAccount('$newuserid', 2, '$capid', NULL, NULL, '$statid', '$fname', '$lname', '$email', '$phone', '$actid');");
+
+			    #$body = "Hello ".$fname.", \n Thank you for visiting the CarMax booth! Please use the link below to complete your account and setup your applicant profile. \n".$_SERVER['SERVER_NAME']."register.php?id=".$actid."Best, \n The CarMax CaptureIt Team";
+			    $body = file_get_contents("email/template.html");
+			    $body = str_replace("[name]", $fname, $body);
+			    $body = str_replace("[id]", $actid, $body);
+			    $body = str_replace("[url]", "https://".$_SERVER['HTTP_HOST'], $body);
+			    include("email/email.php");
+			    $e = new Email();
+			    $e->sendEmail($email, $fname." ".$lname, "Account Activation Code", $body);
 			    fclose($handle);
+			    //fclose($body);
 			} else {
 			    throw new Exception("Error opening file: ".$file);
 			} 

@@ -6,14 +6,19 @@
     if (!isset($_SESSION["login"])){
         Header("Location:login");
     }
+
+    if($_SESSION["role"] == 2){
+        Header("Location:dashboard");
+    }
+
     require_once("db".DIRECTORY_SEPARATOR."db.php");
     if (isset($_POST["update"])){
         $userid = $_SESSION["new-user-id"];
-        $note = $_POST["notes"];
-        $first = $_POST["fname"];
-        $last = $_POST["lname"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
+        $note = trim($_POST["notes"], " ");
+        $first = trim($_POST["fname"], " ");
+        $last = trim($_POST["lname"], " ");
+        $email = trim($_POST["email"], " ");
+        $phone = trim($_POST["phone"], " ");
         $noteid = md5(uniqid(rand(), true));
         $mydb->query("CALL UpdateAccount('$userid', '$first', '$last', '$email', '$phone', '$noteid', '$note');");          
 

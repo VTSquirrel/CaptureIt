@@ -98,6 +98,7 @@
         </div>
         <?php
           require_once("../db/db.php");
+          /*TODO replace with procedure*/
           $result = $mydb->query("SELECT a.FirstName, a.LastName, a.Role, roles.RoleTitle, a.EmailAddress, a.PhoneNumber, ad.Street, ad.City, ad.State, ad.Zip FROM account a LEFT JOIN address ad ON a.UserID=ad.UserID LEFT JOIN roles ON roles.RoleID = a.Role WHERE a.UserID='".$_SESSION["userid"]."';");
           $row = mysqli_fetch_array($result);
           $last = $row["LastName"];
@@ -180,11 +181,17 @@
                                 <span class='text-info'>Updated $date".' at '."$time</span>
                               ";
                             }else{
-                              echo "
-                                <h4>Quick Stats</h4>
-                                <span class='text-info'>$appcount".' applicants in pool'."<br></span>
-                                <span class='text-info'>$intcount".' scheduled interviews'."<br></span>
-                                ";
+                              echo "<h4>Quick Stats</h4>";
+                                if ($appcount > 1 || $appcount == 0){
+                                  echo "<span class='text-info'>$appcount".' applicants in pool'."<br></span>";
+                                }else{
+                                  echo "<span class='text-info'>$appcount".' applicant in pool'."<br></span>";
+                                }
+                                if ($intcount > 1 || $intcount == 0){
+                                  echo "<span class='text-info'>$intcount".' scheduled interviews'."<br></span>";
+                                }else{
+                                  echo "<span class='text-info'>$intcount".' scheduled interview'."<br></span>";
+                                }
                             }
                           ?>
                         </p>
@@ -500,7 +507,7 @@
                 </div>
                 <div id="analysis-content" style="display:none;">
                   <?php
-                    if($manager){
+                    /*if($manager){
                       echo "
                       <div id='bubble' style='display: none;'>
                         <iframe src='https://public.tableau.com/views/BubbleChartLive/Dashboard1?:showVizHome=no&:embed=true' style='height:580px; width:100%;' frameborder='0'></iframe>
@@ -518,7 +525,7 @@
                         <iframe src='https://public.tableau.com/views/Individualoverview/Dashboard2?:showVizHome=no&:embed=true' style='height:580px; width:100%;' frameborder='0'></iframe>
                       </div>
                       ";
-                    }
+                    }*/
                   ?>
                 </div>
                 <div id="interview-content" style="display:none;">

@@ -4,15 +4,15 @@
 	if(isset($_POST["updateInfo"])){
 		$addid = md5(uniqid(rand(), true));
 		$userid = $_SESSION["userid"];
-		$email = $_POST["email"];
-		$phone = $_POST["phone"];
-		$street = $_POST["address"];
-		$city = $_POST["city"];
-		$state = $_POST["state"];
-		$zip = $_POST["zip"];
+		$email = trim($_POST["email"], " ");
+		$phone = trim($_POST["phone"], " ");
+		$street = trim($_POST["address"], " ");
+		$city = trim($_POST["city"], " ");
+		$state = trim($_POST["state"], " ");
+		$zip = trim($_POST["zip"], " ");
 		$mydb->query("CALL UpdateContactInfo('$userid', '$addid', '$email', '$phone', '$street', '$city', '$state', '$zip');");
 		$_SESSION["contact-update"] = true;
-		Header("Location:index.php");
+		Header("Location:./");
 	}
 	else if (isset($_POST["updatePass"])){
 		if ($_POST["pass1"] != "" && $_POST["pass2"] != ""){
@@ -25,7 +25,7 @@
 		}else{
 			$_SESSION["password-update"] = false;
 		}
-		Header("Location:index.php");
+		Header("Location:./");
 	}
 	else if (isset($_POST["appdata"])){
 		$dataid = md5(uniqid(rand(), true));
@@ -35,7 +35,7 @@
         $major = $_POST["major"];
         $minor = $_POST["minor"];
         $gdate = $_POST["gdate"];
-        $currs = $_POST["extra"];
+        $currs = trim($_POST["extra"], " ");
         $ogpa = $_POST["o-gpa"];
         $igpa = $_POST["i-gpa"];
         $emptype = $_POST["emp-type"];
@@ -43,6 +43,6 @@
 
 		$mydb->query("CALL UpdateAppData('$userid', '$dataid', '$school', '$ogpa', '$igpa', '$major', '$minor', '$degree', '$gdate', '$emptype', '$citizen', '$currs');");
 		$_SESSION["profile-update"] = true;
-		Header("Location:index.php");
+		Header("Location:./");
 	}
 ?>

@@ -101,15 +101,15 @@
           /*TODO replace with procedure*/
           $result = $mydb->query("SELECT a.FirstName, a.LastName, a.Role, roles.RoleTitle, a.EmailAddress, a.PhoneNumber, ad.Street, ad.City, ad.State, ad.Zip FROM account a LEFT JOIN address ad ON a.UserID=ad.UserID LEFT JOIN roles ON roles.RoleID = a.Role WHERE a.UserID='".$_SESSION["userid"]."';");
           $row = mysqli_fetch_array($result);
-          $last = $row["LastName"];
-          $first = $row["FirstName"];
-          $email = $row["EmailAddress"];
-          $role = $row["RoleTitle"];
-          $address = $row["Street"];
-          $phone = $row["PhoneNumber"];
-          $city = $row["City"];
-          $state = $row["State"];
-          $zip = $row["Zip"];
+          $last = trim($row["LastName"], " ");
+          $first = trim($row["FirstName"], " ");
+          $email = trim($row["EmailAddress"], " ");
+          $role = trim($row["RoleTitle"], " ");
+          $address = trim($row["Street"], " ");
+          $phone = trim($row["PhoneNumber"], " ");
+          $city = trim($row["City"], " ");
+          $state = trim($row["State"], " ");
+          $zip = trim($row["Zip"], " ");
         ?>
             <main role="main" class="container">
                 <div id="dash-content" class="active-content" style="">
@@ -307,7 +307,7 @@
                                                 $major = $data["Major"];
                                                 $minor = $data["Minor"];
                                                 $gdate = $data["AntGrad"];
-                                                $currs = $data["Extracurriculars"];
+                                                $currs = trim($data["Extracurriculars"], " ");
                                                 $ogpa = $data["GPAOverall"];
                                                 $igpa = $data["GPAInMajor"];
                                                 $emptype = $data["EmpType"];
@@ -354,9 +354,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-8">
                                                         <label class="control-label">Extracurricular Activities:</label>
-                                                        <textarea class="form-control" type="text" name="extra" id="extra">
-                                                            <?php if ($data) echo $currs ?>
-                                                        </textarea>
+                                                        <textarea class="form-control" type="text" name="extra" id="extra"><?php if ($data) echo $currs ?></textarea>
                                                     </div>
                                                 </div>
                                         </section>

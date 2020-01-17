@@ -23,11 +23,11 @@
 
 			$mail->SMTPAuth = true;
 
-			$mail->Username = $email;
+			$mail->Username = EMAIL;
 
-			$mail->Password = $pass;
+			$mail->Password = E_PASS;
 
-			$mail->setFrom("thegurugamers@gmail.com", "CarMax CaptureIt");
+			$mail->setFrom("no-reply@capit.io", "CarMax CaptureIt");
 			$mail->addReplyTo("no-reply@capit.io", "CarMax CaptureIt");
 			$mail->addEmbeddedImage(dirname(__DIR__)."/img/logo.png", "logo", "logo.png");
 			$mail->addAddress($to, $name);

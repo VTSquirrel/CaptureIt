@@ -56,9 +56,12 @@
             100% { transform: rotate(360deg); }
         }
         .bd-example-modal-lg .modal-dialog{
-            position: absolute;
-            left: 50%;
-            top: 50%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              min-height: 80%;
         }
           
         .bd-example-modal-lg .modal-dialog .modal-content{
@@ -78,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <form class="form-signin text-center" action="#">
+        <form class="form-signin text-center" action="./">
             <h2 class="form-signin-heading"><a href="."><img src="img/logo.png" style="width:300px; height:100px;"></a></h2>
             <h4>Resume Upload</h4>
             <br><br>
@@ -132,7 +135,7 @@
                             </button>
                     </div>
                     <div class="modal-body">
-                        <form name="verify" id="verify" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <form name="verify" id="verify" action="./">
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">First Name</label>
                                 <div class="col-9">
